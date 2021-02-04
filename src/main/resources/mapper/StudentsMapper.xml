@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yhp.dao.StudentsMapper">
+  <resultMap id="BaseResultMap" type="com.hezho.bean.Students">
+    <id column="studentid" jdbcType="INTEGER" property="studentid" />
+    <result column="studentname" jdbcType="VARCHAR" property="studentname" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    studentid, studentname
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from students
+    where studentid = #{studentid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from students
+    where studentid = #{studentid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hezho.bean.Students">
+    insert into students (studentid, studentname)
+    values (#{studentid,jdbcType=INTEGER}, #{studentname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hezho.bean.Students">
+    insert into students
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="studentid != null">
+        studentid,
+      </if>
+      <if test="studentname != null">
+        studentname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="studentid != null">
+        #{studentid,jdbcType=INTEGER},
+      </if>
+      <if test="studentname != null">
+        #{studentname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hezho.bean.Students">
+    update students
+    <set>
+      <if test="studentname != null">
+        studentname = #{studentname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where studentid = #{studentid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hezho.bean.Students">
+    update students
+    set studentname = #{studentname,jdbcType=VARCHAR}
+    where studentid = #{studentid,jdbcType=INTEGER}
+  </update>
+</mapper>
