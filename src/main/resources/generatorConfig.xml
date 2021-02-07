@@ -31,10 +31,14 @@
         </sqlMapGenerator>
         <!--⽣成Dao⽂件,⽣成接⼝ -->
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="com.yhp.dao"
+                             targetPackage="com.hezho.dao"
                              targetProject="C:\Users\zhouhe\IdeaProjects\springSSMIntegrated\src\main\java">
         </javaClientGenerator>
-        <table tableName="students" enableCountByExample="false"
+        <table tableName="bills" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+        <table tableName="billtype" enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false">
         </table>
